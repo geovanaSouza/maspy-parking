@@ -10,7 +10,7 @@ setup: ## Create the virtual environment and install project dependencies
 	uv pip install --python $(PYTHON) -e .
 
 run:
-	$(PYTHON) src/parking.py
+	$(PYTHON) -m parking
 
 clean: ## Remove the virtual environment
 	rm -rf $(VENV)
