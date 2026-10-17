@@ -11,6 +11,21 @@ make run
 
 `make help` lists all available commands.
 
+## Project structure
+
+```
+src/parking/
+├── __init__.py          # package exports
+├── __main__.py          # entry point (python -m parking)
+├── config.py            # DRV_SETTINGS driver profiles
+├── environment.py       # Parking environment
+├── simulation.py        # main() – wires agents, channel and startup
+└── agents/
+    ├── __init__.py
+    ├── manager.py       # Manager agent
+    └── driver.py        # Driver agent
+```
+
 ## Current version overview
 
 Three actors communicate through the `Parking` channel:
