@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maspy-parking"
+version = "0.1.0"
+description = "Parking implementation using Maspy."
+requires-python = ">=3.12"
+dependencies = [
+    "maspy-ml==2026.5.13",
+]
