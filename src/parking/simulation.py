@@ -17,23 +17,24 @@ def main(num_driver_agents: int = 10, num_spots: int = 5):
 
     # Define Manager Agent
     manager = Manager()
-    manager.add(Goal("find_spot_available"))
 
+    # Define Driver Agents
     driver_list: list = []
-
     for i in range(num_driver_agents):
         # Assign budget, counter and wait from DRV_SETTINGS to each driver agent
         budget = DRV_SETTINGS["budget"][i % len(DRV_SETTINGS["budget"])]
         print(f"Budget from driver {i}: {budget}")
         counter = DRV_SETTINGS["counter"][(i * 2) % 5]
         print(f"Counter from driver {i}: {counter}")
+        wait = DRV_SETTINGS["wait"][(i*4)%5]
+        print(f"Wait from driver {i}: {wait}")
         print()
-        drv = Driver("Drv")
+        drv = Driver("Drv", wait)
         drv.add(Goal("ask_spot_available", manager.my_name))
         driver_list.append(drv)
 
     # Configure admin and system initialization
     Admin(file_log=True)
-    Admin().connect_to(manager, park_ch)
+    Admin().connect_to(manager, [park,park_ch])
     Admin().connect_to(driver_list, park_ch)
     Admin().start_system()
