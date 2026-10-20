@@ -49,5 +49,10 @@ The manager stops its cycle once no `Drv` agents are running.
 
 ### Pending improvements
 
-- [ ] Prevent the Manager from offering the same spot to several drivers at once. Today this makes a driver retry because the spot is already occupied when it tries to park.
+- [ ] Offer each spot to only one driver at a time, keeping it reserved until the driver parks or gives up. Today several drivers can receive the same spot and end up retrying because it is already occupied.
+- [ ] When all spots are occupied, keep the waiting drivers in a queue and serve them in order as spots are freed, instead of leaving their requests unanswered.
+- [ ] Make sure no driver waits forever: after a configurable timeout it should give up and finish, so the simulation always terminates.
+- [ ] Limit the number of parking attempts per driver and wait a little between them, so a full parking lot does not cause an endless retry loop.
+- [ ] Make price negotiation move in one direction only: each new driver offer must be at least the previous one, and each new manager counter-offer must be at most the previous one, never going below the manager's minimum or outside the driver's budget. Today the driver can offer less after the manager has already lowered the price.
 - [ ] Add a second (and maybe a third) parking environment with different prices.
+- [ ] Measure again after the queue is in place: today, with 50 drivers and 10 spots, a run takes about 40-52s and many drivers still fail once before getting a spot.

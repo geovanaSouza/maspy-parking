@@ -24,7 +24,7 @@ class Parking(Environment):
     def leave_spot(self, agt):
         spot = self.get(Percept("spot",(Any,[agt])))
         if spot is None:
-            self.print(f"Agent {agt} is not allocated to any spots")
+            self.print(f"Driver {agt} is not allocated to any spots")
             return None
         spot_id = spot.values[0]
         self.print(f"Driver {agt} leaving spot {spot_id}")
